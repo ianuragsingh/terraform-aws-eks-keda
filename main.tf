@@ -16,13 +16,16 @@ resource "helm_release" "keda" {
   ]
 }
 
-locals {
-  keda_chart_values = {
-    create_service_account = var.create_service_account
-    service_account_name   = var.service_account_name
+resource "helm_release" "http-add-on" {
+  count = var.http_addon_enabled ? 1 : 0
 
-    annotations = jsonencode({
-        "eks.amazonaws.com/role-arn" = var.create_irsa_role ? module.keda_irsa_role[0].iam_role_arn : ""
-    })
-  }
+  name       = var.http_addon_helm_release_name
+  repository = var.helm_chart_repo_url
+  chart      = var.http_addon_helm_chart_name
+  version    = var.http_addon_helm_chart_version
+  namespace  = var.namespace
+
+  depends_on = [ 
+    helm_release.keda
+  ]
 }

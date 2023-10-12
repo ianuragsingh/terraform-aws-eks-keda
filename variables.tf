@@ -1,4 +1,4 @@
-#------ variables for keda --------
+#------ Variables for keda --------
 variable "helm_chart_name" {
   description = "Helm chart name to be installed"
   type        = string
@@ -104,4 +104,36 @@ variable "helm_release_max_history" {
   description = "Maximum number of release versions stored per release"
   type        = number
   default     = 0
+}
+
+
+#------ Variables for http addon --------
+variable "http_addon_enabled" {
+  description = "Whether to install http addon or not"
+  type        = bool
+  default     = false
+}
+
+variable "http_addon_helm_chart_name" {
+  description = "Helm chart name to be installed"
+  type        = string
+  default     = "keda-add-ons-http"
+}
+
+variable "http_addon_helm_chart_version" {
+  description = "Version of the Helm chart"
+  type        = string
+  default     = "0.6.0"
+}
+
+variable "http_addon_helm_release_name" {
+  description = "Helm chart release name"
+  type        = string
+  default     = "http-add-on"
+}
+
+variable "tags" {
+  description = "A map of tags to add to all resources."
+  type        = map(string)
+  default     = {}
 }
