@@ -1,5 +1,5 @@
 module "keda" {
-  source = "git::https://github.com/ianuragsingh/terraform-aws-eks-keda.git?ref=v0.3.0"
+  source = "git::https://github.com/ianuragsingh/terraform-aws-keda.git?ref=v0.4.0"
 
   helm_chart_name    = "keda"
   helm_release_name  = "keda"
