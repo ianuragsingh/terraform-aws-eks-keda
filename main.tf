@@ -25,7 +25,7 @@ resource "helm_release" "http-add-on" {
   version    = var.http_addon_helm_chart_version
   namespace  = var.namespace
 
-  depends_on = [ 
+  depends_on = [
     helm_release.keda
   ]
 }
